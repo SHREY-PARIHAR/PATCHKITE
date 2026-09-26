@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patchkite — Website Quality Monitor & Broken Link Scanner</title>
+
+    <meta
+        name="description"
+        content="Patchkite checks websites for broken links, missing images, broken CSS and JavaScript resources."
+    >
+
+    <meta name="author" content="Shrey">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#070a0d">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<header class="navbar">
+
+    <a href="index.html" class="logo">
+        Patchkite
+    </a>
+
+    <nav aria-label="Main navigation">
+
+        <a href="checks.html">
+            What it checks
+        </a>
+
+        <a href="how-it-works.html">
+            How it works
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="about.html#owner" class="owner-nav">
+            S H R E Y
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            WEBSITE QUALITY ON WATCH
+        </div>
+
+        <h1>
+            Catch website breaks
+            <span>before they hurt.</span>
+        </h1>
+
+        <p class="subtitle">
+            Patchkite checks your website for broken links, missing images,
+            broken CSS and JavaScript resources before they affect your visitors.
+        </p>
+
+
+        <div class="scanner-box">
+
+            <label for="websiteUrl">
+                Website URL
+            </label>
+
+            <div class="input-row">
+
+                <input
+                    type="url"
+                    id="websiteUrl"
+                    name="websiteUrl"
+                    placeholder="https://example.com"
+                    autocomplete="url"
+                >
+
+                <button
+                    id="scanButton"
+                    type="button"
+                >
+                    SCAN WEBSITE
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SCAN REPORT -->
+
+    <section
+        class="results-section"
+        id="results-section"
+    >
+
+        <div class="section-heading">
+
+            <span>
+                SCAN REPORT
+            </span>
+
+            <h2>
+                Website findings
+            </h2>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div
+            id="scanStatus"
+            class="scan-status"
+            aria-live="polite"
+        >
+
+            <div class="status-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>
+                    No scan yet
+                </h3>
+
+                <p>
+                    Enter a website above and start your first scan.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BASIC RESOURCE RESULTS -->
+
+        <div
+            id="results"
+            class="results hidden"
+        >
+
+            <div class="result-card">
+
+                <span
+                    class="result-number"
+                    id="totalLinks"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Links checked
+                </span>
+
+            </div>
+
+
+            <div class="result-card danger">
+
+                <span
+                    class="result-number"
+                    id="brokenLinks"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Broken links
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span
+                    class="result-number"
+                    id="totalImages"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Images checked
+                </span>
+
+            </div>
+
+
+            <div class="result-card warning">
+
+                <span
+                    class="result-number"
+                    id="missingImages"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Missing images
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span
+                    class="result-number"
+                    id="totalStylesheets"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    CSS files checked
+                </span>
+
+            </div>
+
+
+            <div class="result-card danger">
+
+                <span
+                    class="result-number"
+                    id="brokenStylesheets"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Broken CSS
+                </span>
+
+            </div>
+
+
+            <div class="result-card">
+
+                <span
+                    class="result-number"
+                    id="totalScripts"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    JS files checked
+                </span>
+
+            </div>
+
+
+            <div class="result-card danger">
+
+                <span
+                    class="result-number"
+                    id="brokenScripts"
+                >
+                    0
+                </span>
+
+                <span class="result-label">
+                    Broken JS
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PROFESSIONAL WEBSITE OVERVIEW -->
+
+        <div
+            id="auditOverview"
+            class="audit-overview hidden"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    WEBSITE HEALTH
+                </span>
+
+                <h2>
+                    Technical overview
+                </h2>
+
+            </div>
+
+
+            <div class="overview-grid">
+
+
+                <!-- HEALTH -->
+
+                <div class="audit-card">
+
+                    <span class="audit-label">
+                        OVERALL HEALTH
+                    </span>
+
+                    <strong
+                        id="healthStatus"
+                        class="audit-value"
+                    >
+                        —
+                    </strong>
+
+                    <small id="healthIssues">
+                        —
+                    </small>
+
+                </div>
+
+
+                <!-- PAGE -->
+
+                <div class="audit-card">
+
+                    <span class="audit-label">
+                        PAGE
+                    </span>
+
+                    <strong
+                        id="pageTitle"
+                        class="audit-value"
+                    >
+                        —
+                    </strong>
+
+                    <small id="pageTitleLength">
+                        —
+                    </small>
+
+                </div>
+
+
+                <!-- H1 -->
+
+                <div class="audit-card">
+
+                    <span class="audit-label">
+                        HEADINGS
+                    </span>
+
+                    <strong
+                        id="headingCount"
+                        class="audit-value"
+                    >
+                        —
+                    </strong>
+
+                    <small>
+                        H1 / H2 structure
+                    </small>
+
+                </div>
+
+
+                <!-- HTTPS -->
+
+                <div class="audit-card">
+
+                    <span class="audit-label">
+                        HTTPS
+                    </span>
+
+                    <strong
+                        id="httpsStatus"
+                        class="audit-value"
+                    >
+                        —
+                    </strong>
+
+                    <small>
+                        Secure connection
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SEO -->
+
+        <div
+            id="seoSection"
+            class="audit-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    SEO
+                </span>
+
+                <h2>
+                    Search visibility checks
+                </h2>
+
+            </div>
+
+
+            <div
+                id="seoResults"
+                class="audit-list"
+            >
+            </div>
+
+        </div>
+
+
+
+        <!-- ACCESSIBILITY -->
+
+        <div
+            id="accessibilitySection"
+            class="audit-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    ACCESSIBILITY
+                </span>
+
+                <h2>
+                    Accessibility checks
+                </h2>
+
+            </div>
+
+
+            <div
+                id="accessibilityResults"
+                class="audit-list"
+            >
+            </div>
+
+        </div>
+
+
+
+        <!-- SECURITY -->
+
+        <div
+            id="securitySection"
+            class="audit-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    SECURITY
+                </span>
+
+                <h2>
+                    Security headers
+                </h2>
+
+            </div>
+
+
+            <div
+                id="securityResults"
+                class="audit-list"
+            >
+            </div>
+
+        </div>
+
+
+
+        <!-- FINDINGS -->
+
+        <div
+            id="findings"
+            class="findings hidden"
+        >
+
+            <div class="section-heading">
+
+                <span>
+                    ISSUES
+                </span>
+
+                <h2>
+                    Findings
+                </h2>
+
+            </div>
+
+
+            <div id="findingList">
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<footer>
+
+    <div>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            Patchkite
+        </a>
+
+    </div>
+
+
+    <div class="owner">
+
+        <span>
+            BUILT &amp; OWNED BY
+        </span>
+
+        <strong>
+            S H R E Y
+        </strong>
+
+    </div>
+
+
+    <div>
+
+        <p>
+            Website quality, always on watch.
+        </p>
+
+        <span>
+            © 2026 Patchkite
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
